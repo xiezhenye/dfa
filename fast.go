@@ -14,7 +14,7 @@ func (m *M) ToFast() *FastM {
 	fm := &FastM{make([]FastS, len(m.States))}
 	for i := range m.States {
 		s, fs := &m.States[i], &fm.States[i]
-		fs.Label = int(s.Label - labeledFinalStart)
+		fs.Label = int(s.Label)
 		for j := range s.Table {
 			trans := &s.Table[j]
 			for b := int(trans.Lo); b <= int(trans.Hi); b++ {
