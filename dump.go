@@ -79,7 +79,10 @@ func (m *M) SaveSVG(file string, opt ...*GraphOption) error {
 		return err
 	}
 	defer w.Close()
-	go dotCmd.Run()
+	err = dotCmd.Start()
+	if err != nil {
+		return err
+	}
 	go func() {
 		buf, _ := ioutil.ReadAll(ew)
 		fmt.Println(string(buf))
